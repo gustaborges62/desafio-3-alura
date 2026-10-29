@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Tarefas | Gerenciador Simples e Elegante</title>
+  
+  <!-- Fonte moderna do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos da aplicação -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Cabeçalho com saudação, data e botão de alternar tema -->
+    <header class="app-header">
+      <div class="header-info">
+        <span class="header-date" id="currentDate">Hoje</span>
+        <h1 class="header-title">Minhas Tarefas</h1>
+      </div>
+      
+      <!-- Botão para alternar entre Modo Claro e Escuro -->
+      <button id="themeToggleBtn" class="btn-icon theme-toggle" title="Alternar tema (Claro / Escuro)" aria-label="Alternar tema">
+        <!-- Ícone do Sol (Modo Claro) -->
+        <svg class="icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <!-- Ícone da Lua (Modo Escuro) -->
+        <svg class="icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Resumo numérico das tarefas (Métricas) -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total</span>
+        <span class="stat-value" id="totalCount">0</span>
+      </div>
+      <div class="stat-card stat-pending">
+        <span class="stat-label">Pendentes</span>
+        <span class="stat-value" id="pendingCount">0</span>
+      </div>
+      <div class="stat-card stat-completed">
+        <span class="stat-label">Concluídas</span>
+        <span class="stat-value" id="completedCount">0</span>
+      </div>
+    </section>
+
+    <!-- Formulário para adicionar nova tarefa -->
+    <form id="taskForm" class="task-form">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="taskInput" 
+          placeholder="O que você precisa fazer hoje?" 
+          autocomplete="off"
+          required
+        />
+        <button type="submit" class="btn-primary" id="addTaskBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Adicionar</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Barra de filtros: Todas, Pendentes, Concluídas -->
+    <nav class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todas</button>
+      <button class="filter-tab" data-filter="pending">Pendentes</button>
+      <button class="filter-tab" data-filter="completed">Concluídas</button>
+    </nav>
+
+    <!-- Lista onde o JavaScript vai inserir as tarefas -->
+    <main class="tasks-section">
+      <ul id="taskList" class="task-list">
+        <!-- Itens inseridos dinamicamente pelo app.js -->
+      </ul>
+
+      <!-- Mensagem exibida quando não há tarefas -->
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </div>
+        <p class="empty-title">Nenhuma tarefa encontrada</p>
+        <p class="empty-subtitle">Adicione uma nova tarefa acima para começar seu dia produtivo!</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Script com toda a lógica da aplicação -->
+  <script src="app.js"></script>
+</body>
+</html>
